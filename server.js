@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 
 // Middlewares
-app.use(cors(/*Lägg in url till webbsida som får anropa sedan*/));
+app.use(cors()); //Lägg till url till webbsida när du vet vilken som ska använda API:et
 
 // Routes
 app.use("/api", authRoutes);

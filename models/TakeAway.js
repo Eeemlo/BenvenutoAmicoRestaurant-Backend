@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // Lunch Schema
 const takeAwaySchema = new mongoose.Schema({
-    coursename: {
+    name: {
         type: String,
         required: true,
         trim: true
@@ -14,13 +14,17 @@ const takeAwaySchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
     }
 });
 
 // Lägg till lunch
 takeAwaySchema.statics.add = async function (coursename, category, price) {
     try {
-        const takeAway = new this({coursename, category, price});
+        const takeAway = new this({name, category, price});
         await takeAway.save();
         return takeAway;
     } catch(error) {
@@ -29,5 +33,5 @@ takeAwaySchema.statics.add = async function (coursename, category, price) {
 };
 
 
-const TakeAway = mongoose.model("Take Away", takeAwaySchema);
+const TakeAway = mongoose.model("TakeAway", takeAwaySchema);
 module.exports = TakeAway;

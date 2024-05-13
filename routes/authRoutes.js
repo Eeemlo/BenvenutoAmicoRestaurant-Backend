@@ -8,13 +8,8 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-//Anslute till mongoDB
-mongoose.set("strictQuery", false);
-mongoose.connect(process.env.DATABASE).then(() => {
-    console.log("Connected to MongoDB");
-}).catch((error) => {
-    console.error("Error connecting to database: " + error);
-});
+//Anslut till mongoDB
+const db = require("../models/Database");
 
 // Användarmodell
 const User = require("../models/User");
@@ -23,7 +18,7 @@ const User = require("../models/User");
 router.get("/users", async (req, res) => {
     try {
         let result = await User.find({});
-        console.log(result);
+        console.log(result); //Ta bort
         return res.json(result);
     } catch(error) {
         return res.status(500).json(error);
@@ -102,5 +97,7 @@ router.post("/login", async (req, res) => {
         res.status(500).json({ error: "Server error: " + error })
     }
 });
+
+// Radera användare?
 
 module.exports = router;
