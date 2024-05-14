@@ -22,7 +22,7 @@ const takeAwaySchema = new mongoose.Schema({
 });
 
 // Lägg till lunch
-takeAwaySchema.statics.add = async function (coursename, category, price) {
+takeAwaySchema.statics.add = async function (name, category, price) {
     try {
         const takeAway = new this({name, category, price});
         await takeAway.save();

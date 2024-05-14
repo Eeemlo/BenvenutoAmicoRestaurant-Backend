@@ -14,10 +14,9 @@ require("dotenv").config();
 // Ny app
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(bodyParser.json());
-
 
 // Middlewares
+app.use(bodyParser.json());
 app.use(cors()); //Lägg till url till webbsida när du vet vilken som ska använda API:et
 
 // Routes
@@ -27,6 +26,22 @@ app.use("/api", menuRoutes);
 // Skyddade routes
 
 app.get("/api/admin", authenticateToken, (req, res) => {
+    res.json({ message: "Skyddad route!" })
+});
+
+app.get("/api/admin/users", authenticateToken, (req, res) => {
+    res.json({ message: "Skyddad route!" })
+});
+
+app.get("/api/admin/lunch", authenticateToken, (req, res) => {
+    res.json({ message: "Skyddad route!" })
+});
+
+app.get("/api/admin/dinner", authenticateToken, (req, res) => {
+    res.json({ message: "Skyddad route!" })
+});
+
+app.get("/api/admin/takeaway", authenticateToken, (req, res) => {
     res.json({ message: "Skyddad route!" })
 });
 
