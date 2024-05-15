@@ -14,8 +14,7 @@ const dinnerSchema = new mongoose.Schema({
         unique: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     price: {
         type: Number,
