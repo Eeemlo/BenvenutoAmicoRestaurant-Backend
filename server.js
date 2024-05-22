@@ -17,7 +17,9 @@ const port = process.env.PORT || 3000;
 
 // Middlewares
 app.use(bodyParser.json());
-app.use(cors()); //Lägg till url till webbsida när du vet vilken som ska använda API:et
+app.use(cors({
+    origin: 'https://amazing-panda-c9039b.netlify.app/'
+})); //Lägg till url till webbsida när du vet vilken som ska använda API:et
 
 // Routes
 app.use("/api", authRoutes);
