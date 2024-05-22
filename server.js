@@ -18,9 +18,11 @@ const port = process.env.PORT || 3000;
 // Middlewares
 app.use(bodyParser.json());
 app.use(cors(
+    {origin: 'https://amazing-panda-c9039b.netlify.app'},
     {origin: 'https://amazing-panda-c9039b.netlify.app/takeaway/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/dinner/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/lunch/'},
+{origin: 'https://amazing-panda-c9039b.netlify.app/dinner-menu/'},
+{origin: 'https://amazing-panda-c9039b.netlify.app/lunch-menu/'},
+{origin: 'https://amazing-panda-c9039b.netlify.app/book/'},
 {origin: 'https://amazing-panda-c9039b.netlify.app/admin-dinner/'},
 {origin: 'https://amazing-panda-c9039b.netlify.app/takeaway/'},
 {origin: 'https://amazing-panda-c9039b.netlify.app/admin-lunch/'},
