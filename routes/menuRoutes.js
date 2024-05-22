@@ -13,7 +13,7 @@ const db = require("../models/Database");
 // Modeller för menyer
 const Dinner = require("../models/Dinner");
 const Lunch = require("../models/Lunch");
-const TakeAway = require("../models/Takeaway"); //Ändra till TakeAway om det behövs. Systemet tror att jag har två filer efter namnbyte på filen?
+const TakeAway = require("../models/TakeAway"); //Ändra till TakeAway om det behövs. Systemet tror att jag har två filer efter namnbyte på filen?
 const BookTable = require("../models/BookTable");
 
 /*
