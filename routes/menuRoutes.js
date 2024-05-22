@@ -14,7 +14,7 @@ const db = require("../models/Database");
 const Dinner = require("../models/Dinner");
 const Lunch = require("../models/Lunch");
 const TakeAway = require("../models/Takeaway"); //Ändra till TakeAway om det behövs. Systemet tror att jag har två filer efter namnbyte på filen?
-
+const BookTable = require("../models/BookTable");
 
 /*
 *
@@ -40,7 +40,7 @@ router.post("/dinners", async (req, res) => {
         const { name, category, description, price } = req.body;
 
         // Validera input
-        if (!name || !category || !description || !price) {
+        if (!name || !category || !price) {
             return res
                 .status(400)
                 .json({
@@ -52,7 +52,7 @@ router.post("/dinners", async (req, res) => {
         const dinner = new Dinner({
             name,
             category,
-            description,
+            description: description || null,
             price,
             vegetarian: req.body.vegetarian || false, //false = defaultvärde
             vegan: req.body.vegan || false, // false = defaultvärde
@@ -199,7 +199,7 @@ router.get("/takeaways", async (req, res) => {
 router.post("/takeaways", async (req, res) => {
     try {
         console.log(req.body); // Ta bort
-        const { name, category, price } = req.body;
+        const { name, category, description, price } = req.body;
 
         // Validera input
         if (!name || !category || !price) {
@@ -214,6 +214,7 @@ router.post("/takeaways", async (req, res) => {
         const takeaway = new TakeAway({
            name,
            category,
+           description: description || null,
            price
         });
         await takeaway.save();
@@ -257,6 +258,69 @@ router.delete("/takeaways/:_id", async (req, res) => {
 });
 
 
+/*
+*
+* ROUTING FÖR BORDSBOKNING
+*
+*/
+
+// Hämta bordsbokning
+router.get("/bookings", async (req, res) => {
+    try {
+        let result = await BookTable.find({});
+        console.log(result); //Ta bort
+        return res.json(result);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+});
+
+// Skapa bordsbokning
+router.post("/bookings", async (req, res) => {
+    try {
+        console.log(req.body); // Ta bort
+        const { fullname, email, date, quantity } = req.body;
+
+        // Validera input
+        if (!fullname || !email || !date || !quantity) {
+            return res
+                .status(400)
+                .json({
+                    error: "It's required to send fullname, email, date, quantity",
+                });
+        }
+
+        // Korrekt - spara bordsbokning
+        const booking = new BookTable({
+            fullname,
+            email,
+            date,
+            quantity
+        });
+        await booking.save();
+
+        res.status(201).json({ message: "Booking created" });
+    } catch (error) {
+        res.status(400).json({
+            message: "Error creating booking: " + error,
+        });
+    }
+});
+
+// Radera bordsbokning
+router.delete("/bookings/:_id", async (req, res) => {
+    try {
+        let bookingId = req.params._id;
+        let deleteBooking = await BookTable.findByIdAndDelete(bookingId);
+
+        if(!deleteBooking) {
+            return res.status(400).json({ message: "Unable to find booking" })
+        }
+        return res.json({ message: "Booking deleted" });
+    } catch(error) {
+        return res.status(500).json({ message: "Unable to delete booking: " + error})
+    }
+});
 
 
 module.exports = router;

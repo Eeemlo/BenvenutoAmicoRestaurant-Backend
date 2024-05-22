@@ -11,10 +11,11 @@ const dinnerSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        unique: true
+        unique: false
     },
     description: {
-        type: String
+        type: String,
+        required: false
     },
     price: {
         type: Number,
