@@ -18,16 +18,16 @@ const port = process.env.PORT || 3000;
 // Middlewares
 app.use(bodyParser.json());
 app.use(cors(
-    {origin: 'https://amazing-panda-c9039b.netlify.app'},
-    {origin: 'https://amazing-panda-c9039b.netlify.app/takeaway/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/dinner-menu/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/lunch-menu/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/book/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/admin-dinner/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/takeaway/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/admin-lunch/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/admin-takeaway/'},
-{origin: 'https://amazing-panda-c9039b.netlify.app/admin-bookings/'},
+    {origin: 'https://benvenutoamico.netlify.app'},
+    {origin: 'https://benvenutoamico.netlify.app/takeaway/'},
+{origin: 'https://benvenutoamico.netlify.app/dinner-menu/'},
+{origin: 'https://benvenutoamico.netlify.app/lunch-menu/'},
+{origin: 'https://benvenutoamico.netlify.app/book/'},
+{origin: 'https://benvenutoamico.netlify.app/admin-dinner/'},
+{origin: 'https://benvenutoamico.netlify.app/takeaway/'},
+{origin: 'https://benvenutoamico.netlify.app/admin-lunch/'},
+{origin: 'https://benvenutoamico.netlify.app/admin-takeaway/'},
+{origin: 'https://benvenutoamico.netlify.app/admin-bookings/'},
 )); //Lägg till url till webbsida när du vet vilken som ska använda API:et
 
 // Routes
