@@ -40,7 +40,7 @@ app.get("/api/admin", authenticateToken, (req, res) => {
     res.json({ message: "Skyddad route!" })
 });
 
-app.get("/api/admin/users", authenticateToken, (req, res) => {
+app.get("/api/admin/bookings", authenticateToken, (req, res) => {
     res.json({ message: "Skyddad route!" })
 });
 

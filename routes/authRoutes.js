@@ -98,6 +98,6 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// Radera användare?
+
 
 module.exports = router;
